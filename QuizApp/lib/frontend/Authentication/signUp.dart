@@ -4,14 +4,16 @@ import 'package:quiz_app/frontend/Components/QATextFormField.dart';
 
 import '../style/colors.dart';
 
-class SignIn extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
+  TextEditingController nameCtrl = TextEditingController();
   TextEditingController mailCtrl = TextEditingController();
   TextEditingController passCtrl = TextEditingController();
+  TextEditingController confPassCtrl = TextEditingController();
 
   bool _isSaving = false;
 
@@ -33,7 +35,13 @@ class _SignInState extends State<SignIn> {
           children: [
             Image.asset(
               'assets/logo.png',
-              height: 300,
+              height: 200,
+            ),
+            QATextFormField(
+              controller: nameCtrl,
+              labelText: 'Name',
+              hintText: 'enter your name',
+              enabled: !_isSaving,
             ),
             QATextFormField(
               controller: mailCtrl,
@@ -46,28 +54,29 @@ class _SignInState extends State<SignIn> {
                 controller: passCtrl,
                 labelText: 'Password',
                 hintText: 'enter your password'),
+            QATextFormField(
+                enabled: !_isSaving,
+                controller: passCtrl,
+                labelText: 'Confirm Password',
+                hintText: 'enter your password again'),
             QAElevatedButton(
               onPressed: () => {
                 // TODO signIn logic here
               },
-              buttonText: 'Sign In',
-              color: MyColors.myBlack,
-              textColor: MyColors.myPrimaryPink,
-            ),
-            TextButton(
-                onPressed: () => {},
-                child: Text(
-                  'Forget Password?',
-                  style: TextStyle(color: MyColors.myBlack, fontWeight: FontWeight.bold),
-                )),
-            const SizedBox(
-              height: 40.0,
-            ),
-            QAElevatedButton(
-              onPressed: () => {Navigator.pushNamed(context, '/signUp')},
               buttonText: 'Sign Up',
               color: MyColors.myPrimaryPink,
               textColor: MyColors.myBlack,
+            ),
+            Container(
+              height: 20.0,
+              margin: const EdgeInsets.only(top: 70.0),
+              child: Text('Already have an account', style: TextStyle(color: MyColors.myBlack, fontSize: 15, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+            ),
+            QAElevatedButton(
+              onPressed: () => {Navigator.pushNamed(context, '/signIn')},
+              buttonText: 'Sign In',
+              color: MyColors.myBlack,
+              textColor: MyColors.myPrimaryPink,
             )
           ],
         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/frontend/Authentication/signIn.dart';
 import 'package:quiz_app/frontend/Welcome/welcome.dart';
 
+import 'frontend/Authentication/signUp.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/':(context)=> const Welcome(),
         '/signIn': (context) => SignIn(),
+        '/signUp': (context) => SignUp(),
       },
     );
   }
