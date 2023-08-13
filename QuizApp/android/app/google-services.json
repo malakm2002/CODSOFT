@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "582342557641",
+    "project_id": "codsoft-wisdom-wave-63d82",
+    "storage_bucket": "codsoft-wisdom-wave-63d82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582342557641:android:32e2898b80b1e7d4283218",
+        "android_client_info": {
+          "package_name": "com.codsoft.quizApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582342557641-m6n79eemktukrbgklfn80b30qap3docv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoBBHGdJsGF45rHIRinFdPrrKraDfh88c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582342557641-m6n79eemktukrbgklfn80b30qap3docv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
