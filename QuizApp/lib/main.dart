@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/frontend/Authentication/signIn.dart';
-import 'package:quiz_app/frontend/Home/Home.dart';
-import 'package:quiz_app/frontend/Welcome/welcome.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'frontend/Authentication/signIn.dart';
 import 'frontend/Authentication/signUp.dart';
+import 'frontend/Home/Home.dart';
+import 'frontend/Welcome/welcome.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Initialize Flutter
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.android);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform, name: 'codsoft-wisdom-wave-63d82');
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {

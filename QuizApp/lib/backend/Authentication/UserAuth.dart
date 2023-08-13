@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UserAuth {
-  static Future<void> SignUp(
+  static Future<void> signUp(
       String email, String password, String name, BuildContext context) async {
     try {
       final cred = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -44,10 +43,18 @@ class UserAuth {
     }
   }
 
-  static Future<void> SignIn(String email, String password) async {
+  static Future<void> signIn(String email, String password, BuildContext context) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text(
+              'Signed In Successfully',
+              textAlign: TextAlign.center,
+            )),
+      );
+      Navigator.pushNamed(context, '/home');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -57,7 +64,8 @@ class UserAuth {
     }
   }
 
-  static Future<void> SignOut() async {
+  static Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pop();
   }
 }

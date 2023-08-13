@@ -1,4 +1,4 @@
-package com.codesoft.quizApp;
+package com.codsoft.quizApp;
 
 import io.flutter.embedding.android.FlutterActivity;
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/frontend/Components/QAElevatedButton.dart';
-import 'package:quiz_app/frontend/Components/QATextFormField.dart';
 
+
+import '../Components/QAElevatedButton.dart';
+import '../Components/QATextFormField.dart';
 import '../style/colors.dart';
 
 class SignIn extends StatefulWidget {

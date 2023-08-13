@@ -1,4 +1,4 @@
-name: quiz_app
+name: com.codsoft.quizApp
 description: presents multiple-choice questions to users and provides immediate feedback on their answers
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

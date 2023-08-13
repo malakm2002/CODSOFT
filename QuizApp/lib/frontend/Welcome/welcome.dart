@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/frontend/Components/QAElevatedButton.dart';
-import 'package:quiz_app/frontend/style/colors.dart';
+import '../Components/QAElevatedButton.dart';
+import '../style/colors.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
