@@ -1,5 +1,5 @@
+import 'package:com.codsoft.quizApp/backend/Authentication/UserAuth.dart';
 import 'package:flutter/material.dart';
-
 
 import '../Components/QAElevatedButton.dart';
 import '../Components/QATextFormField.dart';
@@ -16,7 +16,30 @@ class _SignInState extends State<SignIn> {
 
   bool _isSaving = false;
 
-  void _saveForm() {}
+  Future<void> _saveForm() async {
+    var mail = mailCtrl.text.trim();
+    var pass = passCtrl.text.trim();
+    setState(() {
+      _isSaving = true;
+    });
+    if (mail.isNotEmpty && pass.isNotEmpty) {
+      await UserAuth.signIn(mail, pass, context);
+      setState(() {
+        _isSaving = false;
+      });
+    } else {
+      setState(() {
+        _isSaving = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text(
+          'Please enter your email and password!',
+          textAlign: TextAlign.center,
+        )),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,29 +60,35 @@ class _SignInState extends State<SignIn> {
               height: 300,
             ),
             QATextFormField(
+              isPassword: false,
               controller: mailCtrl,
               labelText: 'Email',
               hintText: 'enter your email address',
               enabled: !_isSaving,
             ),
             QATextFormField(
+                isPassword: true,
                 enabled: !_isSaving,
                 controller: passCtrl,
                 labelText: 'Password',
                 hintText: 'enter your password'),
-            QAElevatedButton(
-              onPressed: () => {
-                // TODO signIn logic here
-              },
-              buttonText: 'Sign In',
-              color: MyColors.myBlack,
-              textColor: MyColors.myPrimaryPink,
-            ),
+            _isSaving
+                ? LinearProgressIndicator(
+                    color: MyColors.myPrimaryPink,
+                    backgroundColor: MyColors.myBlack,
+                  )
+                : QAElevatedButton(
+                    onPressed: _saveForm,
+                    buttonText: 'Sign In',
+                    color: MyColors.myBlack,
+                    textColor: MyColors.myPrimaryPink,
+                  ),
             TextButton(
                 onPressed: () => {},
                 child: Text(
                   'Forget Password?',
-                  style: TextStyle(color: MyColors.myBlack, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: MyColors.myBlack, fontWeight: FontWeight.bold),
                 )),
             const SizedBox(
               height: 40.0,

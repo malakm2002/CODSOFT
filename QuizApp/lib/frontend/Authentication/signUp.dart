@@ -1,3 +1,4 @@
+import 'package:com.codsoft.quizApp/backend/Authentication/UserAuth.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/QAElevatedButton.dart';
@@ -17,7 +18,61 @@ class _SignUpState extends State<SignUp> {
 
   bool _isSaving = false;
 
-  void _saveForm() {}
+  Future<void> _saveForm() async {
+    setState(() {
+      _isSaving=true;
+    });
+    var name = nameCtrl.text.trim();
+    var mail = mailCtrl.text.trim();
+    var pass = passCtrl.text.trim();
+    var confPass= confPassCtrl.text.trim();
+    final RegExp emailRegex = RegExp(r'^[\w\.-]+@[\w\.-]+\.\w+$');
+    if(name.isNotEmpty && mail.isNotEmpty && pass.isNotEmpty && confPass.isNotEmpty){
+      if(emailRegex.hasMatch(mail)){
+        if(pass.compareTo(confPass)==0){
+          await UserAuth.signUp(mail, pass, name, context);
+        }
+        else{ setState(() {
+          _isSaving=false;
+        });
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text(
+                  'Passwords do not match!',
+                  textAlign: TextAlign.center,
+                )),
+          );
+        }
+      }
+      else{ setState(() {
+        _isSaving=false;
+      });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text(
+                'Please enter a valid email address',
+                textAlign: TextAlign.center,
+              )),
+        );
+      }
+    }
+    else{
+      setState(() {
+        _isSaving=false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text(
+              'All the fields are required',
+              textAlign: TextAlign.center,
+            )),
+      );
+    }
+setState(() {
+  _isSaving=false;
+});
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,27 +97,30 @@ class _SignUpState extends State<SignUp> {
               labelText: 'Name',
               hintText: 'enter your name',
               enabled: !_isSaving,
+              isPassword: false,
             ),
             QATextFormField(
               controller: mailCtrl,
               labelText: 'Email',
               hintText: 'enter your email address',
               enabled: !_isSaving,
+              isPassword: false,
             ),
             QATextFormField(
                 enabled: !_isSaving,
                 controller: passCtrl,
+                isPassword: true,
                 labelText: 'Password',
                 hintText: 'enter your password'),
             QATextFormField(
                 enabled: !_isSaving,
-                controller: passCtrl,
+                isPassword: true,
+                controller: confPassCtrl,
                 labelText: 'Confirm Password',
                 hintText: 'enter your password again'),
+            _isSaving? LinearProgressIndicator(color: Colors.black,backgroundColor: MyColors.myPrimaryPink,):
             QAElevatedButton(
-              onPressed: () => {
-                // TODO signIn logic here
-              },
+              onPressed: _saveForm,
               buttonText: 'Sign Up',
               color: MyColors.myPrimaryPink,
               textColor: MyColors.myBlack,
@@ -70,7 +128,14 @@ class _SignUpState extends State<SignUp> {
             Container(
               height: 20.0,
               margin: const EdgeInsets.only(top: 70.0),
-              child: Text('Already have an account', style: TextStyle(color: MyColors.myBlack, fontSize: 15, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+              child: Text(
+                'Already have an account',
+                style: TextStyle(
+                    color: MyColors.myBlack,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             ),
             QAElevatedButton(
               onPressed: () => {Navigator.pushNamed(context, '/signIn')},

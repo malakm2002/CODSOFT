@@ -73,7 +73,7 @@ class _WelcomeState extends State<Welcome> {
                 ),
               ),
             ),
-           QAElevatedButton(buttonText: 'Let\'s Get Started', onPressed: ()=>Navigator.pushNamed(context, '/home'), color: MyColors.myBlack,textColor: MyColors.myPrimaryPink,)
+           QAElevatedButton(buttonText: 'Let\'s Get Started', onPressed: ()=>Navigator.pushNamed(context, '/signIn'), color: MyColors.myBlack,textColor: MyColors.myPrimaryPink,)
           ],
         ),
       ),

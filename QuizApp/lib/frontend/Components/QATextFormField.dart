@@ -7,22 +7,25 @@ class QATextFormField extends StatelessWidget {
   final String labelText;
   final String hintText;
   final bool enabled;
+  final bool isPassword;
 
 
-
-  const QATextFormField({
-    Key? key,
-    required this.controller,
-    required this.labelText,
-    required this.hintText,
-    required this.enabled
-  }) : super(key: key);
+  const QATextFormField(
+      {Key? key,
+      required this.controller,
+      required this.labelText,
+      required this.hintText,
+      required this.enabled,
+      required this.isPassword})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0, bottom: 10.0),
+      padding: const EdgeInsets.only(
+          top: 10.0, left: 30.0, right: 30.0, bottom: 10.0),
       child: TextFormField(
+        obscureText: isPassword,
         enabled: enabled,
         controller: controller,
         cursorColor: MyColors.myPrimaryPink,
