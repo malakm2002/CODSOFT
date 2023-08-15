@@ -1,14 +1,15 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:com.codsoft.quizApp/backend/Database/AccessDB.dart';
+import 'package:com.codsoft.quizApp/frontend/Quizzes/Quiz.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'frontend/Authentication/ResetPassword.dart';
 import 'frontend/Authentication/signIn.dart';
 import 'frontend/Authentication/signUp.dart';
 import 'frontend/Home/Home.dart';
 import 'frontend/Welcome/welcome.dart';
-import 'backend/Database/Data.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Initialize Flutter
@@ -16,15 +17,26 @@ Future<void> main() async {
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
       name: 'codsoft-wisdom-wave-63d82');
-  print('initialized firebase app');
-  // Adding Questions to the Database
+
+  // Adding Questions to the Database just for the reference and they are already saved in the Data Class
   // FirebaseDatabase database = FirebaseDatabase.instance;
   // DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
   // for(int i=0;i<Data.questions.length;i++){
   //   await _dbRef.child('questions').child('question_$i').set(Data.questions[i]);
   // }
+  // List<Map<dynamic, dynamic>> randomQuestions = await AccessDB.getRandomQuestions("literature", 5);
+  //
+  // print("Randomly selected literature questions:");
+  // for (var question in randomQuestions) {
+  //   print("Question: ${question['question']}");
+  //   print("Options: ${question['options']}");
+  //   print("Correct Answer: ${question['correctAnswer']}");
+  //   print("Category: ${question['category']}");
+  //   print("-------------------------------");
+  // }
 
-
+  List<dynamic> categoriesData = await AccessDB.getCategories();
+  final categories = Set.of(categoriesData);
   runApp(const MyApp());
 }
 
@@ -40,7 +52,9 @@ class MyApp extends StatelessWidget {
         '/': (context) => const Welcome(),
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),
-        '/home': (context) => const Home()
+        '/home': (context) => const Home(),
+        '/quiz': (context)=> Quiz(),
+        '/resetPass': (context) => ResetPassword(),
       },
     );
   }

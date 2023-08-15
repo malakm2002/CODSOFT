@@ -9,6 +9,7 @@ class Data {
         'd': 'Cu',
       },
       'correctAnswer': 'a',
+      'category': "science"
     },
     {
       'question': 'What is the largest planet in our solar system?',
@@ -19,6 +20,7 @@ class Data {
         'd': 'Saturn',
       },
       'correctAnswer': 'b',
+      'category': "science"
     },
     {
       'question':
@@ -30,6 +32,7 @@ class Data {
         'd': 'Transpiration',
       },
       'correctAnswer': 'b',
+      'category': "science"
     },
     {
       'question':
@@ -41,10 +44,10 @@ class Data {
         'd': 'Hydrogen',
       },
       'correctAnswer': 'a',
+      'category': "science"
     },
     {
-      'question':
-      'What is the capital of France',
+      'question': 'What is the capital of France',
       'options': {
         'a': 'Rome',
         'b': 'Madrid',
@@ -52,10 +55,10 @@ class Data {
         'd': 'Berlin',
       },
       'correctAnswer': 'c',
+      'category': "geography"
     },
     {
-      'question':
-      'Which city serves as the capital of Russia?',
+      'question': 'Which city serves as the capital of Russia?',
       'options': {
         'a': 'Moscow',
         'b': 'St. Petersburg',
@@ -63,10 +66,10 @@ class Data {
         'd': 'Warsaw',
       },
       'correctAnswer': 'a',
+      'category': "geography"
     },
     {
-      'question':
-      'What is the capital of spain?',
+      'question': 'What is the capital of spain?',
       'options': {
         'a': 'Respiration',
         'b': 'Photosynthesis',
@@ -74,7 +77,9 @@ class Data {
         'd': 'Transpiration',
       },
       'correctAnswer': 'b',
-    },{
+      'category': "geography"
+    },
+    {
       'question': 'Which city is the capital of Germany?',
       'options': {
         'a': 'Vienna',
@@ -83,6 +88,7 @@ class Data {
         'd': 'Brussels',
       },
       'correctAnswer': 'c',
+      'category': "geography"
     },
     {
       'question': 'Who wrote the novel "Pride and Prejudice"?',
@@ -93,9 +99,11 @@ class Data {
         'd': 'Virginia Woolf',
       },
       'correctAnswer': 'b',
+      'category': "literature"
     },
     {
-      'question': 'What is the name of the ship in Herman Melville\'s novel "Moby-Dick"?',
+      'question':
+          'What is the name of the ship in Herman Melville\'s novel "Moby-Dick"?',
       'options': {
         'a': 'Pequod',
         'b': 'Nautilus',
@@ -103,9 +111,11 @@ class Data {
         'd': 'Endeavour',
       },
       'correctAnswer': 'a',
+      'category': "literature"
     },
     {
-      'question': 'Which Shakespearean play features the characters Romeo and Juliet?',
+      'question':
+          'Which Shakespearean play features the characters Romeo and Juliet?',
       'options': {
         'a': 'Hamlet',
         'b': 'Othello',
@@ -113,6 +123,7 @@ class Data {
         'd': 'Romeo and Juliet',
       },
       'correctAnswer': 'd',
+      'category': "literature"
     },
     {
       'question': '"1984" is a dystopian novel written by which author?',
@@ -123,9 +134,11 @@ class Data {
         'd': 'Margaret Atwood',
       },
       'correctAnswer': 'a',
+      'category': "literature"
     },
     {
-      'question': 'The Great Wall of China was primarily built to defend against which group?',
+      'question':
+          'The Great Wall of China was primarily built to defend against which group?',
       'options': {
         'a': 'Vikings',
         'b': 'Mongols',
@@ -133,6 +146,7 @@ class Data {
         'd': 'Egyptians',
       },
       'correctAnswer': 'b',
+      'category': "history"
     },
     {
       'question': 'Who was the first President of the United States?',
@@ -143,9 +157,11 @@ class Data {
         'd': 'John Adams',
       },
       'correctAnswer': 'c',
+      'category': "history"
     },
     {
-      'question': 'The Renaissance is often associated with the revival of arts and learning in which historical period?',
+      'question':
+          'The Renaissance is often associated with the revival of arts and learning in which historical period?',
       'options': {
         'a': 'Middle Ages',
         'b': 'Ancient Greece',
@@ -153,9 +169,11 @@ class Data {
         'd': '14th-17th century',
       },
       'correctAnswer': 'd',
+      'category': "history"
     },
     {
-      'question': 'The famous speech "I Have a Dream" was delivered by which civil rights leader?',
+      'question':
+          'The famous speech "I Have a Dream" was delivered by which civil rights leader?',
       'options': {
         'a': 'Malcolm X',
         'b': 'Nelson Mandela',
@@ -163,7 +181,9 @@ class Data {
         'd': 'Rosa Parks',
       },
       'correctAnswer': 'c',
-    },{
+      'category': "history"
+    },
+    {
       'question': 'Which gas is responsible for the Earth\'s ozone layer?',
       'options': {
         'a': 'Oxygen',
@@ -172,6 +192,7 @@ class Data {
         'd': 'Ozone',
       },
       'correctAnswer': 'a',
+      'category': "science"
     },
     {
       'question': 'Who painted the Mona Lisa?',
@@ -182,6 +203,7 @@ class Data {
         'd': 'Michelangelo',
       },
       'correctAnswer': 'c',
+      'category': "history"
     },
     {
       'question': 'Which natural disaster is measured using the Richter scale?',
@@ -192,9 +214,11 @@ class Data {
         'd': 'Flood',
       },
       'correctAnswer': 'b',
+      'category': "science"
     },
     {
-      'question': 'What year did the United States declare independence from Great Britain?',
+      'question':
+          'What year did the United States declare independence from Great Britain?',
       'options': {
         'a': '1776',
         'b': '1789',
@@ -202,6 +226,7 @@ class Data {
         'd': '1765',
       },
       'correctAnswer': 'a',
+      'category': "history"
     },
     {
       'question': 'Who wrote the play "Romeo and Juliet"?',
@@ -212,7 +237,9 @@ class Data {
         'd': 'Jane Austen',
       },
       'correctAnswer': 'a',
-    },{
+      'category': "literature"
+    },
+    {
       'question': 'Which planet is known as the "Red Planet"?',
       'options': {
         'a': 'Venus',
@@ -221,6 +248,7 @@ class Data {
         'd': 'Neptune',
       },
       'correctAnswer': 'b',
+      'category': "science"
     },
     {
       'question': 'What is the largest mammal on Earth?',
@@ -231,6 +259,7 @@ class Data {
         'd': 'Hippopotamus',
       },
       'correctAnswer': 'c',
+      'category': "science"
     },
     {
       'question': 'In which year did World War II end?',
@@ -241,6 +270,7 @@ class Data {
         'd': '1941',
       },
       'correctAnswer': 'a',
+      'category': "history"
     },
     {
       'question': 'Which famous scientist developed the theory of relativity?',
@@ -251,6 +281,7 @@ class Data {
         'd': 'Nikola Tesla',
       },
       'correctAnswer': 'b',
+      'category': "science"
     },
     {
       'question': 'What is the capital city of Australia?',
@@ -261,9 +292,11 @@ class Data {
         'd': 'Brisbane',
       },
       'correctAnswer': 'c',
+      'category': "geography"
     },
     {
-      'question': 'Which famous artist is known for painting the "Starry Night"?',
+      'question':
+          'Which famous artist is known for painting the "Starry Night"?',
       'options': {
         'a': 'Leonardo da Vinci',
         'b': 'Pablo Picasso',
@@ -271,6 +304,7 @@ class Data {
         'd': 'Michelangelo',
       },
       'correctAnswer': 'c',
+      'category': "art"
     },
     {
       'question': 'In what year did the Titanic sink on its maiden voyage?',
@@ -281,6 +315,7 @@ class Data {
         'd': '1917',
       },
       'correctAnswer': 'b',
+      'category': "history"
     },
     {
       'question': 'Which gas makes up the majority of Earth\'s atmosphere?',
@@ -291,6 +326,7 @@ class Data {
         'd': 'Helium',
       },
       'correctAnswer': 'b',
+      'category': "science"
     },
     {
       'question': 'Who wrote the novel "To Kill a Mockingbird"?',
@@ -301,7 +337,7 @@ class Data {
         'd': 'Mark Twain',
       },
       'correctAnswer': 'b',
+      'category': "literature"
     },
-
   ];
 }

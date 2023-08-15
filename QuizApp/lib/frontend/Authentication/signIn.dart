@@ -1,4 +1,5 @@
 import 'package:com.codsoft.quizApp/backend/Authentication/UserAuth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Components/QAElevatedButton.dart';
@@ -43,6 +44,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(top: 60),
@@ -84,7 +86,9 @@ class _SignInState extends State<SignIn> {
                     textColor: MyColors.myPrimaryPink,
                   ),
             TextButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.pushNamed(context, '/resetPass')
+                },
                 child: Text(
                   'Forget Password?',
                   style: TextStyle(
