@@ -64,6 +64,7 @@ flutter:
 
   assets:
     - assets/
+    - fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -79,5 +80,5 @@ flutter:
   fonts:
     - family: retro
       fonts:
-        - asset: fonts/espect-retro.otf
+        - asset: fonts/EspectRetro.otf
           style: normal

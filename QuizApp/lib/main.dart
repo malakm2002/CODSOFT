@@ -11,6 +11,7 @@ import 'frontend/Home/Home.dart';
 import 'frontend/Welcome/welcome.dart';
 
 Future<void> main() async {
+  // Disclaimer: it happen that there is not but one question about art in the database
   WidgetsFlutterBinding.ensureInitialized(); // Initialize Flutter
 
   await Firebase.initializeApp(
@@ -18,6 +19,7 @@ Future<void> main() async {
       name: 'codsoft-wisdom-wave-63d82');
 
   // Adding Questions to the Database just for the reference and they are already saved in the Data Class
+
   // FirebaseDatabase database = FirebaseDatabase.instance;
   // DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
   // for(int i=0;i<Data.questions.length;i++){
@@ -42,12 +44,14 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  //driver in the main.dart
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       initialRoute: '/',
       routes: {
+        //routes for smoother navigation
         '/': (context) => const Welcome(),
         '/signIn': (context) => SignIn(),
         '/signUp': (context) => SignUp(),

@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 class AccessDB {
   static final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+  // database: real-time database of firebase
 
   static Future<Map<String, Map<String, dynamic>>> getRandomQuestions(
       String category, int count) async {
