@@ -1,5 +1,4 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'dart:math';
 
 class AccessDB {
   static final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
@@ -13,7 +12,6 @@ class AccessDB {
         (snapshot.value as Map).forEach((key, value) {
           if ((value['category'] as String).compareTo(category) == 0 &&
               questions.length < count) {
-            // print(value);
             questions[key] = {
               'question': value['question'],
               'options': value['options'],

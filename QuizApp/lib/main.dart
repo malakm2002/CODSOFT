@@ -1,4 +1,3 @@
-import 'package:com.codsoft.quizApp/backend/Database/AccessDB.dart';
 import 'package:com.codsoft.quizApp/frontend/Quizzes/Quiz.dart';
 import 'package:flutter/material.dart';
 
@@ -35,8 +34,8 @@ Future<void> main() async {
   //   print("-------------------------------");
   // }
 
-  List<dynamic> categoriesData = await AccessDB.getCategories();
-  final categories = Set.of(categoriesData);
+  // List<dynamic> categoriesData = await AccessDB.getCategories();
+  // final categories = Set.of(categoriesData);
   runApp(const MyApp());
 }
 
