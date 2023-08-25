@@ -1,8 +1,7 @@
-import 'package:com.codsoft.quizApp/backend/Authentication/UserAuth.dart';
-import 'package:com.codsoft.quizApp/frontend/Components/QAElevatedButton.dart';
-import 'package:com.codsoft.quizApp/frontend/Components/QATextFormField.dart';
-import 'package:com.codsoft.quizApp/frontend/Style/colors.dart';
+
 import 'package:flutter/material.dart';
+
+import 'auth.dart';
 
 class ResetPassword extends StatefulWidget {
   @override
@@ -17,7 +16,7 @@ class _ResetPasswordState extends State<ResetPassword> {
     setState(() {
       _isSending = true;
     });
-    await UserAuth.resetPassword(mailCtrl.text.trim(), context);
+    await Auth.resetPassword(mailCtrl.text.trim(), context);
     setState(() {
       _isSending = false;
     });
@@ -29,36 +28,53 @@ class _ResetPasswordState extends State<ResetPassword> {
       appBar: AppBar(
         title: Text(
           'Reset Password',
-          style: TextStyle(color: MyColors.myBlack),
+          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: MyColors.myPrimaryPink,
+        backgroundColor: Colors.pinkAccent,
       ),
       body: Container(
         padding: const EdgeInsets.only(top: 60.0),
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [MyColors.myBlack, MyColors.myPrimaryPink],
-                stops: [0.0, 1.0],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight)),
+        width: 410,
+        color: Colors.white,
         child: Column(
           children: [
-            QATextFormField(
+            Container(
+              margin: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 25.0, bottom: 25.0),
+              width: 280.0,
+              child: TextFormField(
                 controller: mailCtrl,
-                labelText: 'Email',
-                hintText: 'enter your email address',
-                enabled: true,
-                isPassword: false),
+                cursorColor: Colors.pinkAccent,
+                decoration: const InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.pinkAccent),
+                    hintText: 'enter your email address',
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.pinkAccent))),
+              ),
+            ),
             _isSending
                 ? LinearProgressIndicator(
-                    color: MyColors.myPrimaryPink,
-                    backgroundColor: MyColors.myBlack,
+                    color: Colors.pinkAccent,
+                    backgroundColor: Colors.black,
                   )
-                : QAElevatedButton(
-                    onPressed: ResetPass,
-                    buttonText: 'Reset',
-                    color: MyColors.myPrimaryPink,
-                    textColor: MyColors.myBlack)
+                : Container(
+              margin: const EdgeInsets.symmetric(horizontal: 60.0),
+              child: ElevatedButton(
+                onPressed: () => {
+                  Auth.resetPassword(mailCtrl.text.trim(), context)
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pinkAccent,
+                  padding: const EdgeInsets.only(
+                      top: 15, bottom: 15, right: 40, left: 40),
+                ),
+                child: const Text(
+                  'Send',
+                  style: TextStyle(color: Colors.black, fontSize: 23),
+                ),
+              ),
+            ),
           ],
         ),
       ),
