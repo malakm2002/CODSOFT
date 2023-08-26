@@ -41,13 +41,13 @@ class AccessDB {
                 .cast<String>()
                 .toList(growable: true); // Convert each element to String
             print('the user s favorites: $userFavorites');
-            if(doFavorite){
+            if (doFavorite) {
               // Add the new quote to the list
               userFavorites.add(quote!);
+            } else {
+              // Remove the quote from the list
+              userFavorites.remove(quote);
             }
-            else{ // Remove the quote from the list
-              userFavorites.remove(quote);}
-
 
             // Update the database with the new list
             await _dbRef.child('users').child(key).update({
@@ -61,4 +61,27 @@ class AccessDB {
     });
   }
 
+  static Future<List<String>> getCurrentUserFavs() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    final currentUserMail = currentUser?.email;
+    List<String> currentUserFav = [];
+    await _dbRef.child('users').get().then((DataSnapshot snapshot) {
+      if (snapshot.value != null) {
+        var users = snapshot.value as Map;
+        users.forEach((key, value) async {
+          var userFavs = value as Map;
+          var email = userFavs['email'] as String;
+          if (email.compareTo(currentUserMail!) == 0) {
+            List<String> userFavorites = [];
+            userFavorites = (userFavs['favs'] as List)
+                .cast<String>()
+                .toList(growable: true);
+            currentUserFav = userFavorites;
+          }
+        });
+      }
+    });
+    print(currentUserFav);
+    return currentUserFav;
+  }
 }

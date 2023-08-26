@@ -92,6 +92,13 @@ class _HomeState extends State<Home> {
             itemBuilder: (BuildContext context) {
               return [
                 const PopupMenuItem(
+                  value: 'favs',
+                  child: Text(
+                    'Favorites',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const PopupMenuItem(
                   value: 'resetPass',
                   child: Text(
                     'Reset Password',
@@ -109,9 +116,13 @@ class _HomeState extends State<Home> {
             },
             onSelected: (value) {
               var email = FirebaseAuth.instance.currentUser?.email;
-              value.compareTo('signOut') == 0
-                  ? Auth.signOut(context)
-                  : Auth.resetPassword(email!, context);
+              if (value.compareTo('signout') == 0) {
+                Auth.signOut(context);
+              } else if (value.compareTo('resetPass') == 0) {
+                Auth.resetPassword(email!, context);
+              } else {
+                Navigator.pushNamed(context, '/favs');
+              }
 
               print('Selected: $value');
             },

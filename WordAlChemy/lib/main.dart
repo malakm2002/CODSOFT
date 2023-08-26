@@ -4,6 +4,7 @@ import 'package:word_alchemy/Authentication/ResetPassword.dart';
 import 'package:word_alchemy/Authentication/signIn.dart';
 import 'package:word_alchemy/Authentication/signUp.dart';
 import 'package:word_alchemy/Database/AccessDB.dart';
+import 'package:word_alchemy/Home/favorites.dart';
 import 'Home/Welcome.dart';
 import 'Home/home.dart';
 import 'firebase_options.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
       '/signIn': (context) => const SignIn(),
       '/signUp': (context) => const SignUp(),
       '/resetPass': (context) => ResetPassword(),
-      '/home': (context) => Home(),
+      '/home': (context) => const Home(),
+      '/favs': (context) => Favorites()
     });
   }
 }
