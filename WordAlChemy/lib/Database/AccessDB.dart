@@ -25,7 +25,7 @@ class AccessDB {
     return quote;
   }
 
-  static void addToFavorite(String? quote) async {
+  static void quoteFavorite(String? quote, bool doFavorite) async {
     final currentUser = FirebaseAuth.instance.currentUser;
     final currentUserMail = currentUser?.email;
     // await _dbRef.child('users').push().set({'email': currentUserMail, 'favs': [quote]});
@@ -41,8 +41,13 @@ class AccessDB {
                 .cast<String>()
                 .toList(growable: true); // Convert each element to String
             print('the user s favorites: $userFavorites');
-            // Add the new quote to the list
-            userFavorites.add(quote!);
+            if(doFavorite){
+              // Add the new quote to the list
+              userFavorites.add(quote!);
+            }
+            else{ // Remove the quote from the list
+              userFavorites.remove(quote);}
+
 
             // Update the database with the new list
             await _dbRef.child('users').child(key).update({
@@ -55,4 +60,5 @@ class AccessDB {
       }
     });
   }
+
 }

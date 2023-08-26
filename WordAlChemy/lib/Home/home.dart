@@ -28,13 +28,12 @@ class _HomeState extends State<Home> {
         .listen((quote) {
       print("New quote received: $quote");
       setState(() {
-        _currentQuote=quote;
+        _currentQuote = quote;
         _isFav = false;
       });
       _quoteStream.add(quote);
     });
     print('success');
-
   }
 
   @override
@@ -49,7 +48,8 @@ class _HomeState extends State<Home> {
     });
     String quote = await AccessDB.getRandomQuote();
     setState(() {
-      _currentQuote = quote;      _waiting = false;
+      _currentQuote = quote;
+      _waiting = false;
     });
     print('done: $quote');
   }
@@ -60,11 +60,12 @@ class _HomeState extends State<Home> {
         _isFav = true;
       });
       print(' the current: $_currentQuote');
-      AccessDB.addToFavorite(_currentQuote);
+      AccessDB.quoteFavorite(_currentQuote, true);
     } else {
       setState(() {
         _isFav = false;
       });
+      AccessDB.quoteFavorite(_currentQuote, false);
     }
   }
 
@@ -148,7 +149,6 @@ class _HomeState extends State<Home> {
                             builder: (context, snapshot) {
                               final displayedQuote =
                                   snapshot.data ?? _currentQuote;
-
 
                               return Text(
                                 displayedQuote,
