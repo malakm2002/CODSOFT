@@ -16,14 +16,11 @@ class AccessDB {
     await _dbRef.child('quotes').get().then((DataSnapshot snapshot) {
       if (snapshot.value != null) {
         quotes = snapshot.value as List;
-        print('quotes:: $quotes');
         final random = Random();
         final randomIndex = random.nextInt(quotes.length);
-        quote = quotes[randomIndex];print(quote);
-
+        quote = quotes[randomIndex];
       }
     });
-print(quote);
     return quote;
   }
 }
