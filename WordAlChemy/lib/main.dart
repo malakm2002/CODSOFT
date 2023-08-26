@@ -15,7 +15,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  await AccessDB.addQuotes();
+  // await AccessDB.addQuotes();
   runApp(const MyApp());
 }
 

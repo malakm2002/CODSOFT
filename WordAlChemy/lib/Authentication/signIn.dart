@@ -46,13 +46,13 @@ class _SignInState extends State<SignIn> {
             width: 200.0,
             child: TextFormField(
               controller: mailCtrl,
-              cursorColor: Colors.pinkAccent,
+              cursorColor: Color.fromARGB(255,194, 90, 124),
               decoration: const InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                  labelStyle: TextStyle(color: Color.fromARGB(255,194, 90, 124)),
                   hintText: 'enter your email address',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent))),
+                      borderSide: BorderSide(color: Color.fromARGB(255,194, 90, 124)))),
             ),
           ),
           Container(
@@ -62,13 +62,13 @@ class _SignInState extends State<SignIn> {
             child: TextFormField(
               obscureText: true,
               controller: passCtrl,
-              cursorColor: Colors.pinkAccent,
+              cursorColor: Color.fromARGB(255,194, 90, 124),
               decoration: const InputDecoration(
                   labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                  labelStyle: TextStyle(color: Color.fromARGB(255,194, 90, 124)),
                   hintText: 'enter your password',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent))),
+                      borderSide: BorderSide(color: Color.fromARGB(255,194, 90, 124)))),
             ),
           ),
           const SizedBox(
@@ -78,19 +78,21 @@ class _SignInState extends State<SignIn> {
             margin: const EdgeInsets.symmetric(horizontal: 60.0),
             child: _isSigningIn
                 ? const LinearProgressIndicator(
-                    backgroundColor: Colors.pinkAccent,
+                    backgroundColor: Color.fromARGB(255,194, 90, 124),
                     color: Colors.black,
                   )
                 : ElevatedButton(
                     onPressed: signIn,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.pinkAccent,
+                    style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                      backgroundColor: Color.fromARGB(255,194, 90, 124),
                       padding: const EdgeInsets.only(
-                          top: 15, bottom: 15, right: 40, left: 40),
+                          top: 10, bottom: 10, right: 30, left: 30),
                     ),
                     child: const Text(
                       'Sign In',
-                      style: TextStyle(color: Colors.black, fontSize: 23),
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
                   ),
           ),
@@ -117,14 +119,16 @@ class _SignInState extends State<SignIn> {
             margin: const EdgeInsets.symmetric(horizontal: 60.0),
             child: ElevatedButton(
               onPressed: () => {Navigator.pushNamed(context, '/signUp')},
-              style: ElevatedButton.styleFrom(
+              style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50.0),
+              ),
                 backgroundColor: Colors.black,
                 padding: const EdgeInsets.only(
-                    top: 15, bottom: 15, right: 40, left: 40),
+                    top: 10, bottom: 10, right: 30, left: 30),
               ),
               child: const Text(
                 'Sign Up',
-                style: TextStyle(color: Colors.pinkAccent, fontSize: 23),
+                style: TextStyle(color: Color.fromARGB(255,194, 90, 124), fontSize: 20),
               ),
             ),
           ),

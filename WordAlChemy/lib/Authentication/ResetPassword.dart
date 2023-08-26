@@ -30,7 +30,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           'Reset Password',
           style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Color.fromARGB(255,194, 90, 124),
       ),
       body: Container(
         padding: const EdgeInsets.only(top: 60.0),
@@ -44,18 +44,18 @@ class _ResetPasswordState extends State<ResetPassword> {
               width: 280.0,
               child: TextFormField(
                 controller: mailCtrl,
-                cursorColor: Colors.pinkAccent,
+                cursorColor: Color.fromARGB(255,194, 90, 124),
                 decoration: const InputDecoration(
                     labelText: 'Email',
-                    labelStyle: TextStyle(color: Colors.pinkAccent),
+                    labelStyle: TextStyle(color: Color.fromARGB(255,194, 90, 124)),
                     hintText: 'enter your email address',
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.pinkAccent))),
+                        borderSide: BorderSide(color: Color.fromARGB(255,194, 90, 124)))),
               ),
             ),
             _isSending
                 ? LinearProgressIndicator(
-                    color: Colors.pinkAccent,
+                    color: Color.fromARGB(255,194, 90, 124),
                     backgroundColor: Colors.black,
                   )
                 : Container(
@@ -65,7 +65,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   Auth.resetPassword(mailCtrl.text.trim(), context)
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pinkAccent,
+                  backgroundColor: Color.fromARGB(255,194, 90, 124),
                   padding: const EdgeInsets.only(
                       top: 15, bottom: 15, right: 40, left: 40),
                 ),

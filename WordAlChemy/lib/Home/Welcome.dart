@@ -16,7 +16,6 @@ class _WelcomeState extends State<Welcome> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Image.asset(
               'assets/logo.png',
               height: 300,
@@ -33,14 +32,18 @@ class _WelcomeState extends State<Welcome> {
               ),
             ),
             ElevatedButton(
-              onPressed: () => { Navigator.pushNamed(context, '/signIn')},
-              child:const Text(
+              onPressed: () => {Navigator.pushNamed(context, '/signIn')},
+              child: const Text(
                 'Let\'s Get Started',
                 style: TextStyle(color: Colors.black, fontSize: 23),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pinkAccent,
-                padding: const EdgeInsets.only(top: 15, bottom: 15, right: 40, left: 40),
+                backgroundColor: Color.fromARGB(255, 194, 90, 124),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                padding: const EdgeInsets.only(
+                    top: 15, bottom: 15, right: 40, left: 40),
               ),
             ),
           ],

@@ -16,18 +16,25 @@ class _HomeState extends State<Home> {
   String _currentQuote = "No quote is pulled";
   BehaviorSubject<String> _quoteStream = BehaviorSubject<String>();
   bool _waiting = false;
+  bool _isFav = false;
 
   @override
   void initState() {
     super.initState();
     _loadRandomQuote().then((value) => print('getting quote'));
-
-    // Generate a new quote every 24 hours
-    Stream.periodic(Duration(hours: 24), (int count) => count)
+    print("Stream listener activated");
+    Stream.periodic(const Duration(minutes: 1), (int count) => count)
         .asyncMap((_) async => await AccessDB.getRandomQuote())
         .listen((quote) {
+      print("New quote received: $quote");
+      setState(() {
+        _currentQuote=quote;
+        _isFav = false;
+      });
       _quoteStream.add(quote);
     });
+    print('success');
+
   }
 
   @override
@@ -42,10 +49,23 @@ class _HomeState extends State<Home> {
     });
     String quote = await AccessDB.getRandomQuote();
     setState(() {
-      _currentQuote = quote;
-      _waiting = false;
+      _currentQuote = quote;      _waiting = false;
     });
     print('done: $quote');
+  }
+
+  void favoriteQuote() {
+    if (!_isFav) {
+      setState(() {
+        _isFav = true;
+      });
+      print(' the current: $_currentQuote');
+      AccessDB.addToFavorite(_currentQuote);
+    } else {
+      setState(() {
+        _isFav = false;
+      });
+    }
   }
 
   @override
@@ -54,15 +74,15 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text(
           'Home',
-          style: TextStyle(color: Colors.pinkAccent),
+          style: TextStyle(color: Color.fromARGB(255, 194, 90, 124)),
         ),
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         actions: [
           PopupMenuButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.settings,
-              color: Colors.pinkAccent,
+              color: Color.fromARGB(255, 194, 90, 124),
             ),
             color: Colors.pinkAccent.shade100,
             shadowColor: Colors.grey,
@@ -108,29 +128,45 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 100, left: 50, right: 50),
-              padding: const EdgeInsets.all(50),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: Colors.grey.shade300,
-              ),
-              child: _waiting
-                  ? const CircularProgressIndicator(
-                      backgroundColor: Colors.black,
-                      color: Colors.pinkAccent,
-                    )
-                  : StreamBuilder<String>(
-                      stream: _quoteStream.stream,
-                      initialData: _currentQuote,
-                      builder: (context, snapshot) {
-                        return Text(
-                          snapshot.data!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontFamily: 'quote', fontSize: 20),
-                        );
-                      },
-                    ),
-            ),
+                margin: const EdgeInsets.only(top: 150, left: 50, right: 50),
+                padding: const EdgeInsets.only(
+                    top: 40, right: 30, left: 30, bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  color: Colors.grey.shade300,
+                ),
+                child: Column(
+                  children: [
+                    _waiting
+                        ? const CircularProgressIndicator(
+                            backgroundColor: Colors.black,
+                            color: Color.fromARGB(255, 194, 90, 124),
+                          )
+                        : StreamBuilder<String>(
+                            stream: _quoteStream.stream,
+                            initialData: _currentQuote,
+                            builder: (context, snapshot) {
+                              final displayedQuote =
+                                  snapshot.data ?? _currentQuote;
+
+
+                              return Text(
+                                displayedQuote,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontFamily: 'quote', fontSize: 20),
+                              );
+                            },
+                          ),
+                    IconButton(
+                        onPressed: favoriteQuote,
+                        icon: Icon(
+                          _isFav ? Icons.favorite : Icons.favorite_border,
+                          color:
+                              _isFav ? Colors.pinkAccent : Colors.grey.shade600,
+                        ))
+                  ],
+                )),
           ],
         ),
       ),

@@ -23,20 +23,26 @@ class _SignUpState extends State<SignUp> {
     String pass = passCtrl.text.trim();
     String confPass = confPassCtrl.text.trim();
     String name = nameCtrl.text.trim();
-    await Auth.signUp(mail, pass, name, context);
+    if(pass.compareTo(confPass)==0){
+      await Auth.signUp(mail, pass, name, context);
+      setState(() {
+        _isSigningUp = false;
+      });
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text(
+              'Passwords don\'t match',
+              textAlign: TextAlign.center,
+            )),
+      );
+    }
 
-    setState(() {
-      _isSigningUp = false;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    String mail;
-    String password;
-    String name;
-    final RegExp emailRegex = RegExp(r'^[\w\.-]+@[\w\.-]+\.\w+$');
-
     return Scaffold(
       body: ListView(
         children: [
@@ -55,13 +61,13 @@ class _SignUpState extends State<SignUp> {
             width: 200.0,
             child: TextFormField(
               controller: nameCtrl,
-              cursorColor: Colors.pinkAccent,
+              cursorColor: Color.fromARGB(255,194, 90, 124),
               decoration: const InputDecoration(
                   labelText: 'Name',
-                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                  labelStyle: TextStyle(color: Color.fromARGB(255,194, 90, 124)),
                   hintText: 'enter your name',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent))),
+                      borderSide: BorderSide(color: Color.fromARGB(255,194, 90, 124)))),
             ),
           ),
           const SizedBox(
@@ -72,13 +78,13 @@ class _SignUpState extends State<SignUp> {
             width: 200.0,
             child: TextFormField(
               controller: mailCtrl,
-              cursorColor: Colors.pinkAccent,
+              cursorColor: Color.fromARGB(255,194, 90, 124),
               decoration: const InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                  labelStyle: TextStyle(color: Color.fromARGB(255,194, 90, 124)),
                   hintText: 'enter your email address',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent))),
+                      borderSide: BorderSide(color: Color.fromARGB(255,194, 90, 124)))),
             ),
           ),
           // SizedBox(
@@ -90,13 +96,13 @@ class _SignUpState extends State<SignUp> {
             child: TextFormField(
               obscureText: true,
               controller: passCtrl,
-              cursorColor: Colors.pinkAccent,
+              cursorColor: Color.fromARGB(255,194, 90, 124),
               decoration: const InputDecoration(
                   labelText: 'Password',
-                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                  labelStyle: TextStyle(color: Color.fromARGB(255,194, 90, 124)),
                   hintText: 'enter your password',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent))),
+                      borderSide: BorderSide(color: Color.fromARGB(255,194, 90, 124)))),
             ),
           ),
           // SizedBox(
@@ -109,13 +115,13 @@ class _SignUpState extends State<SignUp> {
             child: TextFormField(
               obscureText: true,
               controller: confPassCtrl,
-              cursorColor: Colors.pinkAccent,
+              cursorColor: Color.fromARGB(255,194, 90, 124),
               decoration: const InputDecoration(
                   labelText: 'Confirm Password',
-                  labelStyle: TextStyle(color: Colors.pinkAccent),
+                  labelStyle: TextStyle(color: Color.fromARGB(255,194, 90, 124)),
                   hintText: 'enter your password, again',
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent))),
+                      borderSide: BorderSide(color: Color.fromARGB(255,194, 90, 124)))),
             ),
           ),
           const SizedBox(
@@ -125,19 +131,21 @@ class _SignUpState extends State<SignUp> {
             margin: const EdgeInsets.symmetric(horizontal: 60.0),
             child: _isSigningUp
                 ? const LinearProgressIndicator(
-                    backgroundColor: Colors.pinkAccent,
+                    backgroundColor: Color.fromARGB(255,194, 90, 124),
                     color: Colors.black,
                   )
                 : ElevatedButton(
                     onPressed: signUp,
-                    style: ElevatedButton.styleFrom(
+                    style: ElevatedButton.styleFrom( shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
                       backgroundColor: Colors.black,
                       padding: const EdgeInsets.only(
-                          top: 15, bottom: 15, right: 40, left: 40),
+                          top: 10, bottom: 10, right: 30, left: 30),
                     ),
                     child: const Text(
                       'Sign Up',
-                      style: TextStyle(color: Colors.pinkAccent, fontSize: 23),
+                      style: TextStyle(color: Color.fromARGB(255,194, 90, 124), fontSize: 20),
                     ),
                   ),
           ),
