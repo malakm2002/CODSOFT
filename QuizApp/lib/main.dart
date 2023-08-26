@@ -1,7 +1,10 @@
 import 'package:com.codsoft.quizApp/frontend/Quizzes/Quiz.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'backend/Database/AccessDB.dart';
+import 'backend/Database/Data.dart';
 import 'firebase_options.dart';
 
 import 'frontend/Authentication/ResetPassword.dart';
@@ -20,21 +23,15 @@ Future<void> main() async {
 
   // Adding Questions to the Database just for the reference and they are already saved in the Data Class
 
-  // FirebaseDatabase database = FirebaseDatabase.instance;
-  // DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
-  // for(int i=0;i<Data.questions.length;i++){
-  //   await _dbRef.child('questions').child('question_$i').set(Data.questions[i]);
-  // }
-  // List<Map<dynamic, dynamic>> randomQuestions = await AccessDB.getRandomQuestions("literature", 5);
-  //
-  // print("Randomly selected literature questions:");
-  // for (var question in randomQuestions) {
-  //   print("Question: ${question['question']}");
-  //   print("Options: ${question['options']}");
-  //   print("Correct Answer: ${question['correctAnswer']}");
-  //   print("Category: ${question['category']}");
-  //   print("-------------------------------");
-  // }
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+  for(int i=0;i<Data.questions.length;i++){
+    await _dbRef.child('questions').child('question_$i').set(Data.questions[i]);
+  }
+  Map<String, Map<String, dynamic>> randomQuestions = await AccessDB.getRandomQuestions("art", 5);
+
+  print("Randomly selected literature questions:");
+  print(randomQuestions);
 
   // List<dynamic> categoriesData = await AccessDB.getCategories();
   // final categories = Set.of(categoriesData);
