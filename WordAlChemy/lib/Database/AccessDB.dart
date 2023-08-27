@@ -40,7 +40,6 @@ class AccessDB {
             userFavorites = (userFavs['favs'] as List)
                 .cast<String>()
                 .toList(growable: true); // Convert each element to String
-            print('the user s favorites: $userFavorites');
             if (doFavorite) {
               // Add the new quote to the list
               userFavorites.add(quote!);
@@ -54,7 +53,6 @@ class AccessDB {
               'favs': userFavorites,
             });
 
-            print('Quote added to favorites: $quote');
           }
         });
       }
@@ -83,5 +81,13 @@ class AccessDB {
     });
     print(currentUserFav);
     return currentUserFav;
+  }
+
+  static Future<bool> isFavoriteByUser(String quote) async {
+    List<String> userFavs = await getCurrentUserFavs();
+    if (userFavs.contains(quote)) {
+      return true;
+    }
+    return false;
   }
 }

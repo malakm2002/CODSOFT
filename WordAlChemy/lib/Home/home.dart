@@ -17,23 +17,31 @@ class _HomeState extends State<Home> {
   BehaviorSubject<String> _quoteStream = BehaviorSubject<String>();
   bool _waiting = false;
   bool _isFav = false;
+  bool test = false;
 
   @override
   void initState() {
     super.initState();
     _loadRandomQuote().then((value) => print('getting quote'));
-    print("Stream listener activated");
     Stream.periodic(const Duration(minutes: 1), (int count) => count)
         .asyncMap((_) async => await AccessDB.getRandomQuote())
         .listen((quote) {
-      print("New quote received: $quote");
+      AccessDB.isFavoriteByUser(quote).then((value) {
+        setState(() {
+          _isFav = value;
+        });
+      });
+      print(_isFav);
       setState(() {
         _currentQuote = quote;
-        _isFav = false;
       });
       _quoteStream.add(quote);
     });
-    print('success');
+
+    AccessDB.isFavoriteByUser(
+            'Let your actions speak the words your heart wishes to convey.')
+        .then((value) => test = value);
+    print(test);
   }
 
   @override
@@ -51,7 +59,6 @@ class _HomeState extends State<Home> {
       _currentQuote = quote;
       _waiting = false;
     });
-    print('done: $quote');
   }
 
   void favoriteQuote() {
@@ -59,7 +66,6 @@ class _HomeState extends State<Home> {
       setState(() {
         _isFav = true;
       });
-      print(' the current: $_currentQuote');
       AccessDB.quoteFavorite(_currentQuote, true);
     } else {
       setState(() {
@@ -114,14 +120,22 @@ class _HomeState extends State<Home> {
                 ),
               ];
             },
-            onSelected: (value) {
+            onSelected: (value) async {
               var email = FirebaseAuth.instance.currentUser?.email;
               if (value.compareTo('signout') == 0) {
                 Auth.signOut(context);
               } else if (value.compareTo('resetPass') == 0) {
                 Auth.resetPassword(email!, context);
               } else {
-                Navigator.pushNamed(context, '/favs');
+                var removedQuote = await Navigator.pushNamed(context, '/favs');
+                if (removedQuote != null) {
+                  print(removedQuote);
+                  if (removedQuote == _currentQuote) {
+                    setState(() {
+                      _isFav = false;
+                    });
+                  }
+                }
               }
 
               print('Selected: $value');
