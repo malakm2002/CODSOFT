@@ -1,16 +1,5 @@
-# quiz_app
+Demo:
+Quiz App - https://youtu.be/jxxlEqfkskQ
+Quote App - https://youtu.be/SvFVY_tQ0aU
 
-presents multiple-choice questions to users and provides immediate feedback on their answers
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Notes: for testing purposes the periodic timer in the init state function of the home screen of the quote app  - WordAlChemy is set to

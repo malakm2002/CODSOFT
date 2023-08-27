@@ -7,7 +7,10 @@ and one can notice the former in the application i build through the internship,
 
 I am working on improving the skills i am intrested in including building a cross-platform application and focusing on the experience and UI of the android user using flutter framework for the frontend and firebase: authentication and real-time database for the backend. That's it for the Wisdom Wave (Quiz App) and WordAlChemy (quote App)
 
-looking forward to learning new skills while working on the other tasks
+Demo:
+Quiz App - https://youtu.be/jxxlEqfkskQ
+Quote App - https://youtu.be/SvFVY_tQ0aU
 
+Notes: for testing purposes the periodic timer in the init state function of the home screen of the quote app  - WordAlChemy is set to change the quote every one minute
 
 
